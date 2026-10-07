@@ -1,0 +1,430 @@
+upstreams = []
+show_link = []
+
+[general]
+quota_state_path = "telemt.limit.json"
+config_strict = false
+prefer_ipv6 = false
+fast_mode = true
+use_middle_proxy = true
+proxy_secret_path = "proxy-secret"
+proxy_config_v4_cache_path = "cache/proxy-config-v4.txt"
+proxy_config_v6_cache_path = "cache/proxy-config-v6.txt"
+middle_proxy_nat_probe = true
+middle_proxy_nat_stun_servers = []
+stun_nat_probe_concurrency = 8
+middle_proxy_pool_size = 8
+middle_proxy_warm_standby = 16
+me_init_retry_attempts = 0
+me2dc_fallback = true
+me2dc_fast = true
+me_keepalive_enabled = true
+me_keepalive_interval_secs = 8
+me_keepalive_jitter_secs = 2
+me_keepalive_payload_random = true
+rpc_proxy_req_every = 0
+me_writer_cmd_channel_capacity = 4096
+me_writer_byte_budget_bytes = 33570816
+me_route_channel_capacity = 768
+me_c2me_channel_capacity = 1024
+me_c2me_send_timeout_ms = 4000
+me_reader_route_data_wait_ms = 2
+me_d2c_flush_batch_max_frames = 32
+me_d2c_flush_batch_max_bytes = 131072
+me_d2c_flush_batch_max_delay_us = 500
+me_d2c_ack_flush_immediate = true
+me_quota_soft_overshoot_bytes = 65536
+me_d2c_frame_buf_shrink_threshold_bytes = 262144
+direct_relay_copy_buf_c2s_bytes = 65536
+direct_relay_copy_buf_s2c_bytes = 262144
+direct_relay_buffer_budget_max_bytes = 0
+crypto_pending_buffer = 262144
+max_client_frame = 16777216
+desync_all_full = false
+beobachten = true
+beobachten_minutes = 10
+beobachten_flush_secs = 15
+beobachten_file = "beobachten.txt"
+hardswap = true
+me_warmup_stagger_enabled = true
+me_warmup_step_delay_ms = 500
+me_warmup_step_jitter_ms = 300
+me_reconnect_max_concurrent_per_dc = 8
+me_reconnect_backoff_base_ms = 500
+me_reconnect_backoff_cap_ms = 30000
+me_reconnect_fast_retry_count = 16
+me_single_endpoint_shadow_writers = 2
+me_single_endpoint_outage_mode_enabled = true
+me_single_endpoint_outage_disable_quarantine = true
+me_single_endpoint_outage_backoff_min_ms = 250
+me_single_endpoint_outage_backoff_max_ms = 3000
+me_single_endpoint_shadow_rotate_every_secs = 900
+me_floor_mode = "adaptive"
+me_adaptive_floor_idle_secs = 90
+me_adaptive_floor_min_writers_single_endpoint = 1
+me_adaptive_floor_min_writers_multi_endpoint = 1
+me_adaptive_floor_recover_grace_secs = 180
+me_adaptive_floor_writers_per_core_total = 48
+me_adaptive_floor_cpu_cores_override = 0
+me_adaptive_floor_max_extra_writers_single_per_core = 1
+me_adaptive_floor_max_extra_writers_multi_per_core = 2
+me_adaptive_floor_max_active_writers_per_core = 64
+me_adaptive_floor_max_warm_writers_per_core = 64
+me_adaptive_floor_max_active_writers_global = 256
+me_adaptive_floor_max_warm_writers_global = 256
+upstream_connect_retry_attempts = 2
+upstream_connect_retry_backoff_ms = 100
+upstream_connect_budget_ms = 3000
+tg_connect = 10
+upstream_unhealthy_fail_threshold = 5
+upstream_connect_failfast_hard_errors = false
+stun_iface_mismatch_ignore = false
+unknown_dc_log_path = "unknown-dc.txt"
+unknown_dc_file_log_enabled = false
+log_level = "normal"
+disable_colors = false
+me_socks_kdf_policy = "strict"
+me_route_backpressure_enabled = false
+me_route_fairshare_enabled = false
+me_route_backpressure_base_timeout_ms = 25
+me_route_backpressure_high_timeout_ms = 120
+me_route_backpressure_high_watermark_pct = 80
+me_health_interval_ms_unhealthy = 1000
+me_health_interval_ms_healthy = 3000
+me_admission_poll_ms = 1000
+me_warn_rate_limit_ms = 5000
+me_route_no_writer_mode = "hybrid_async_persistent"
+me_route_no_writer_wait_ms = 250
+me_route_hybrid_max_wait_ms = 3000
+me_route_blocking_send_timeout_ms = 250
+me_route_inline_recovery_attempts = 3
+me_route_inline_recovery_wait_ms = 3000
+fast_mode_min_tls_record = 0
+update_every = 300
+me_reinit_every_secs = 900
+me_hardswap_warmup_delay_min_ms = 1000
+me_hardswap_warmup_delay_max_ms = 2000
+me_hardswap_warmup_extra_passes = 3
+me_hardswap_warmup_pass_backoff_base_ms = 500
+me_config_stable_snapshots = 2
+me_config_apply_cooldown_secs = 300
+me_snapshot_require_http_2xx = true
+me_snapshot_reject_empty_map = true
+me_snapshot_min_proxy_for_lines = 1
+proxy_secret_stable_snapshots = 2
+proxy_secret_rotate_runtime = true
+me_secret_atomic_snapshot = true
+proxy_secret_len_max = 256
+me_pool_drain_ttl_secs = 90
+me_instadrain = false
+me_pool_drain_threshold = 32
+me_pool_drain_soft_evict_enabled = true
+me_pool_drain_soft_evict_grace_secs = 10
+me_pool_drain_soft_evict_per_writer = 2
+me_pool_drain_soft_evict_budget_per_core = 16
+me_pool_drain_soft_evict_cooldown_ms = 1000
+me_bind_stale_mode = "never"
+me_bind_stale_ttl_secs = 90
+me_pool_min_fresh_ratio = 0.8
+me_reinit_drain_timeout_secs = 90
+proxy_secret_auto_reload_secs = 3600
+proxy_config_auto_reload_secs = 3600
+me_reinit_singleflight = true
+me_reinit_max_concurrency = 2
+me_reinit_trigger_channel = 64
+me_reinit_coalesce_window_ms = 200
+me_deterministic_writer_sort = true
+me_writer_pick_mode = "p2c"
+me_writer_pick_sample_size = 3
+ntp_check = true
+ntp_servers = ["pool.ntp.org"]
+auto_degradation_enabled = true
+degradation_min_unavailable_dc_groups = 2
+rst_on_close = "off"
+
+[general.modes]
+classic = false
+secure = false
+tls = true
+
+[general.telemetry]
+core_enabled = true
+user_enabled = true
+me_level = "normal"
+
+[general.links]
+show = "*"
+
+[logging]
+destination = "stderr"
+rotation = "never"
+max_size_bytes = 0
+max_files = 0
+max_age_secs = 0
+
+[network]
+ipv4 = true
+ipv6 = false
+prefer = 4
+multipath = false
+stun_use = true
+stun_servers = [
+    "stun.l.google.com:5349",
+    "stun1.l.google.com:3478",
+    "stun.gmx.net:3478",
+    "stun.l.google.com:19302",
+    "stun.1und1.de:3478",
+    "stun1.l.google.com:19302",
+    "stun2.l.google.com:19302",
+    "stun3.l.google.com:19302",
+    "stun4.l.google.com:19302",
+    "stun.services.mozilla.com:3478",
+    "stun.stunprotocol.org:3478",
+    "stun.nextcloud.com:3478",
+    "stun.voip.eutelia.it:3478",
+]
+stun_tcp_fallback = true
+http_ip_detect_urls = [
+    "https://ifconfig.me/ip",
+    "https://api.ipify.org",
+]
+cache_public_ip_path = "cache/public_ip.txt"
+dns_overrides = []
+
+[server]
+port = 443
+listen_addr_ipv4 = "0.0.0.0"
+listen_addr_ipv6 = "::"
+proxy_protocol = false
+proxy_protocol_header_timeout_ms = 500
+proxy_protocol_trusted_cidrs = [
+    "0.0.0.0/0",
+    "::/0",
+]
+metrics_whitelist = [
+    "0.0.0.0/0",
+    "::1/128",
+]
+listeners = []
+listen_backlog = 1024
+max_connections = 10000
+accept_permit_timeout_ms = 250
+
+[server.api]
+enabled = true
+listen = "0.0.0.0:9091"
+whitelist = ["0.0.0.0/0"]
+gray_action = "drop"
+auth_header = ""
+request_body_limit_bytes = 65536
+minimal_runtime_enabled = true
+minimal_runtime_cache_ttl_ms = 1000
+runtime_edge_enabled = false
+runtime_edge_cache_ttl_ms = 1000
+runtime_edge_top_n = 10
+runtime_edge_events_capacity = 256
+read_only = false
+
+[server.conntrack_control]
+inline_conntrack_control = true
+mode = "tracked"
+backend = "auto"
+profile = "balanced"
+hybrid_listener_ips = []
+pressure_high_watermark_pct = 85
+pressure_low_watermark_pct = 70
+delete_budget_per_sec = 4096
+
+[web]
+enabled = false
+carrier = "https"
+carriers = false
+carrier_learning = true
+carrier_negotiation_aggressiveness = "conservative"
+decoy_fasttrack_mode = "off"
+http_connection_capacity_action = "drop"
+vhosts = []
+
+[web.limits]
+max_header_bytes = 16384
+max_body_bytes = 2097152
+max_frame_payload_bytes = 1048576
+carrier_batch_bytes = 2097152
+max_frames_per_body = 4096
+max_http_connections = 1024
+max_http_overload_connections = 64
+max_http_handlers = 512
+max_lane_open_waits_per_session = 16
+pending_bytes_per_lane = 8388608
+pending_items_per_lane = 1024
+websocket_bytes_global = 268435456
+websocket_admission_watermark_pct = 75
+websocket_eviction_watermark_pct = 90
+websocket_http_connection_reserve = 64
+max_websocket_evictions_in_flight = 8
+max_carrier_learning_entries = 4096
+max_body_readers = 32
+max_body_bytes_global = 67108864
+max_sessions_global = 128
+max_sessions_per_ip = 16
+max_streams_per_session = 128
+max_streams_global = 4096
+max_stream_handshakes = 256
+max_tombstones_per_session = 4096
+pending_bytes_per_session = 33554432
+pending_bytes_global = 536870912
+pending_items_per_session = 16384
+pending_items_global = 262144
+control_bytes_per_session = 262144
+control_bytes_global = 16777216
+max_bootstraps_global = 512
+max_bootstraps_per_ip = 64
+max_vhosts = 8
+max_profiles = 32
+max_static_files = 4096
+max_static_file_bytes = 8388608
+max_static_bytes = 67108864
+debug_records_capacity = 65536
+debug_bytes_global = 67108864
+memory_envelope_bytes = 1342177280
+new_bootstraps_per_minute = 1200
+new_bootstraps_burst = 256
+new_sessions_per_minute = 600
+new_sessions_burst = 128
+new_streams_per_minute = 6000
+new_streams_burst = 512
+
+[web.debug]
+enabled = false
+capture_lifecycle = true
+capture_headers = true
+capture_timings = true
+capture_frames = true
+body_capture = "metadata"
+body_prefix_bytes = 4096
+decoy_body_prefix_bytes = 4096
+default_window_secs = 180
+max_window_secs = 3600
+
+[web.timeouts]
+header_secs = 10
+body_secs = 30
+stream_handshake_secs = 10
+stream_first_byte_secs = 30
+long_poll_secs = 25
+bridge_request_secs = 10
+bridge_retry_secs = 90
+bridge_recovery_secs = 15
+carrier_probe_coalesce_ms = 0
+lane_open_wait_secs = 2
+carrier_health_secs = 30
+websocket_upgrade_secs = 5
+websocket_open_secs = 15
+websocket_write_secs = 30
+websocket_backpressure_secs = 30
+websocket_eviction_secs = 1
+carrier_negotiation_deadlines_secs = [
+    3,
+    5,
+    8,
+    12,
+]
+carrier_learning_secs = 600
+bootstrap_lifetime_secs = 120
+reconnect_grace_secs = 120
+http_idle_secs = 75
+http_overload_timeout_ms = 250
+shutdown_secs = 15
+decoy_header_secs = 30
+
+[timeouts]
+client_first_byte_idle_secs = 300
+client_handshake = 60
+relay_idle_policy_v2_enabled = true
+relay_client_idle_soft_secs = 120
+relay_client_idle_hard_secs = 360
+relay_idle_grace_after_downstream_activity_secs = 30
+client_keepalive = 15
+client_ack = 90
+me_one_retry = 12
+me_one_timeout_ms = 1200
+
+[censorship]
+tls_domain = "tmp.staff-rf.ru"
+tls_domains = []
+unknown_sni_action = "drop"
+tls_fetch_scope = ""
+mask = true
+mask_dynamic = true
+mask_port = 443
+fake_cert_len = 2048
+tls_emulation = true
+tls_front_dir = "tlsfront"
+server_hello_delay_min_ms = 8
+server_hello_delay_max_ms = 24
+tls_new_session_tickets = 0
+serverhello_compact = false
+tls_full_cert_ttl_secs = 90
+alpn_enforce = true
+mask_proxy_protocol = 0
+mask_shape_hardening = true
+mask_shape_hardening_aggressive_mode = false
+mask_shape_bucket_floor_bytes = 512
+mask_shape_bucket_cap_bytes = 4096
+mask_shape_above_cap_blur = false
+mask_shape_above_cap_blur_max_bytes = 512
+mask_relay_max_bytes = 5242880
+mask_relay_timeout_ms = 60000
+mask_relay_idle_timeout_ms = 5000
+mask_classifier_prefetch_timeout_ms = 5
+mask_timing_normalization_enabled = false
+mask_timing_normalization_floor_ms = 0
+mask_timing_normalization_ceiling_ms = 0
+
+[censorship.tls_fetch]
+profiles = [
+    "modern_chrome_like",
+    "modern_firefox_like",
+    "compat_tls12",
+    "legacy_minimal",
+]
+strict_route = true
+attempt_timeout_ms = 5000
+total_budget_ms = 15000
+grease_enabled = false
+deterministic = false
+profile_cache_ttl_secs = 600
+
+[censorship.exclusive_mask]
+
+[access]
+user_max_tcp_conns_global_each = 0
+user_max_unique_ips_global_each = 0
+user_max_unique_ips_mode = "active_window"
+user_max_unique_ips_window_secs = 30
+replay_check_len = 65536
+replay_window_secs = 120
+ignore_time_skew = false
+
+[access.users]
+default = "98c39ac877485109cdeb0c216535d8b9"
+
+[access.user_enabled]
+
+[access.user_ad_tags]
+
+[access.user_max_tcp_conns]
+
+[access.user_expirations]
+
+[access.user_data_quota]
+
+[access.user_rate_limits]
+
+[access.cidr_rate_limits]
+
+[access.user_source_deny]
+
+[access.user_max_unique_ips]
+
+[dc_overrides]
